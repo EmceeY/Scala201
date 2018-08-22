@@ -1,5 +1,6 @@
 package com.example.app
 
+import com.example.app.transformers.JSONPlaceholderTransformer
 import org.scalatra._
 
 class MyScalatraServlet extends ScalatraServlet {
@@ -7,14 +8,14 @@ class MyScalatraServlet extends ScalatraServlet {
   val jsonPlaceHolderBaseURL = "https://jsonplaceholder.typicode.com"
 
   get("/users") {
-    HttpClient(jsonPlaceHolderBaseURL + "/users").getResponse()
+    JSONPlaceholderTransformer.allUsersRaw
   }
 
   get("/posts"){
-    HttpClient(jsonPlaceHolderBaseURL + "/posts").getResponse()
+    JSONPlaceholderTransformer.allPostsRaw
   }
 
   get("/comments") {
-    HttpClient(jsonPlaceHolderBaseURL + "/comments").getResponse()
+    JSONPlaceholderTransformer.allCommentsRaw
   }
 }
