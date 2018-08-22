@@ -2,7 +2,7 @@ package com.example.app.transformers
 
 import com.example.app.HttpClient
 
-object JSONPlaceholderTransformer {
+object JSONPlaceholderDataFactory {
 
   private
   val jsonPlaceHolderBaseURL = "https://jsonplaceholder.typicode.com"
