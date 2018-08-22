@@ -1,21 +1,31 @@
 package com.example.app
 
-import com.example.app.transformers.JSONPlaceholderTransformer
+import com.example.app.transformers.{JSONPlaceholderTransformer => data}
 import org.scalatra._
 
 class MyScalatraServlet extends ScalatraServlet {
 
-  val jsonPlaceHolderBaseURL = "https://jsonplaceholder.typicode.com"
-
   get("/users") {
-    JSONPlaceholderTransformer.allUsersRaw
+    data.allUsersRaw
   }
 
   get("/posts"){
-    JSONPlaceholderTransformer.allPostsRaw
+    data.allPostsRaw
   }
 
   get("/comments") {
-    JSONPlaceholderTransformer.allCommentsRaw
+    data.allCommentsRaw
+  }
+
+  get("/users/:id"){
+    data.individualUser(params("id"))
+  }
+
+  get("/posts/:id"){
+    data.individaulPost(params("id"))
+  }
+
+  get("/comments/:id"){
+    data.individualComment(params("id"))
   }
 }
