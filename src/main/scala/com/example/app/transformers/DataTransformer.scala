@@ -1,6 +1,5 @@
 package com.example.app.transformers
 
-import com.example.app.models._
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 
@@ -11,21 +10,15 @@ object DataTransformer {
   implicit val formats = DefaultFormats // Brings in default date formats etc.
 
 
-  val defaultPost = Post(0,0,"title","body")
-  val defaultPosts = List(defaultPost)
-
-  def getPost(rawJSON: String) : Post = {
-    Try(parse(rawJSON).extract[Post]) match {
-      case Success(post) => post
-      case Failure(e) => defaultPost
+    def getItems[T](rawJSON: String)(implicit m: Manifest[T]) : List[T] = {
+      parse(rawJSON).children.map(child => child.extract[T])
     }
-  }
 
-  def getPosts(rawJSON: String) : List[Post] = {
-    Try(parse(rawJSON).children.map(child => child.extract[Post])) match {
-      case Success(posts) => posts
-      case Failure(e) => defaultPosts
+    def getItem[T](rawJSON: String)(implicit m: Manifest[T]) = {
+      Try(parse(rawJSON).extract[T]) match {
+        case Success(item) => item
+        case Failure(e) => e
+      }
     }
-  }
 
 }
