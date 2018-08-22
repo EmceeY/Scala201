@@ -1,6 +1,6 @@
 package com.example.app
 
-import com.example.app.transformers.{JSONPlaceholderDataFactory => data, DataTransformer => transformer}
+import com.example.app.transformers.{DataTransformer => transformer, JSONPlaceholderDataFactory => data}
 import org.scalatra._
 
 class MyScalatraServlet extends ScalatraServlet {
@@ -10,7 +10,7 @@ class MyScalatraServlet extends ScalatraServlet {
   }
 
   get("/posts"){
-    data.allPostsRaw
+//    data.allPostsRaw
     transformer.getPosts(data.allPostsRaw)
   }
 
@@ -23,7 +23,7 @@ class MyScalatraServlet extends ScalatraServlet {
   }
 
   get("/posts/:id"){
-    data.individualPostRaw(params("id"))
+//    data.individualPostRaw(params("id"))
     transformer.getPost(data.individualPostRaw(params("id")))
   }
 
