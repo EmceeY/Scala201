@@ -18,14 +18,14 @@ class MyScalatraServlet extends ScalatraServlet {
   }
 
   get("/users/:id"){
-    data.individualUser(params("id"))
+    data.individualUserRaw(params("id"))
   }
 
   get("/posts/:id"){
-    data.individaulPost(params("id"))
+    data.individualPostRaw(params("id"))
   }
 
   get("/comments/:id"){
-    data.individualComment(params("id"))
+    data.individualCommentRaw(params("id"))
   }
 }

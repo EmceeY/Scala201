@@ -20,13 +20,13 @@ object JSONPlaceholderTransformer {
   val allUsersRaw = getContent("users")
   val allPostsRaw = getContent("posts")
   val allCommentsRaw = getContent("comments")
-  def individualUser(id: String) = {
+  def individualUserRaw(id: String) = {
     getIndividualContent("users", id)
   }
-  def individaulPost(id: String) = {
+  def individualPostRaw(id: String) = {
     getIndividualContent("posts", id)
   }
-  def individualComment(id: String) = {
+  def individualCommentRaw(id: String) = {
     getIndividualContent("comments", id)
   }
 }
