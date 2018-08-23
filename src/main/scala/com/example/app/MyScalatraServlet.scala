@@ -33,12 +33,10 @@ class MyScalatraServlet extends ScalatraServlet {
   }
 
   get("/posts/:id/user") {
-    val postRaw = data.individualPostRaw(params("id"))
-    val post = transformer.getItem[Post](postRaw)
-    val postUserId = post.userId
+    transformer.getUserByPost(params("id"))
+  }
 
-    val userRaw = data.individualUserRaw(postUserId.toString)
-    val user = transformer.getItem[User](userRaw)
-    user
+  get("/users/:id/postDetails") {
+    transformer.getUsersPosts(params("id"))
   }
 }
