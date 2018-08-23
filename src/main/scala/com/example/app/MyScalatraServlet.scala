@@ -12,7 +12,8 @@ class MyScalatraServlet extends ScalatraServlet {
 
   get("/posts"){
 //    data.allPostsRaw
-    transformer.getItems[Post](data.allPostsRaw)
+    val posts = transformer.getItems[Post](data.allPostsRaw)
+    transformer.caseClassToPrettyJSON(posts)
   }
 
   get("/comments") {
@@ -25,7 +26,8 @@ class MyScalatraServlet extends ScalatraServlet {
 
   get("/posts/:id"){
 //    data.individualPostRaw(params("id"))
-    transformer.getItem[Post](data.individualPostRaw(params("id")))
+    val post = transformer.getItem[Post](data.individualPostRaw(params("id")))
+    transformer.caseClassToPrettyJSON(post)
   }
 
   get("/comments/:id"){
@@ -33,10 +35,12 @@ class MyScalatraServlet extends ScalatraServlet {
   }
 
   get("/posts/:id/user") {
-    transformer.getUserByPost(params("id"))
+    val userByPost = transformer.getUserByPost(params("id"))
+    transformer.caseClassToPrettyJSON(userByPost)
   }
 
   get("/users/:id/postDetails") {
-    transformer.getUsersPosts(params("id"))
+    val usersPost = transformer.getUsersPosts(params("id"))
+    transformer.caseClassToPrettyJSON(usersPost)
   }
 }

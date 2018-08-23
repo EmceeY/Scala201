@@ -18,6 +18,14 @@ object DataTransformer {
     parse(rawJSON).extract[T]
   }
 
+  def stringToPrettyJSON(string: String): String = {
+    pretty(render(parse(string)))
+  }
+
+  def caseClassToPrettyJSON[T](caseClass: T)(implicit  m: Manifest[T]) : String = {
+    pretty(render(Extraction.decompose(caseClass)))
+  }
+
   def getUserByPost(id: String): User = {
     val postRaw = data.individualPostRaw(id)
     val post = getItem[Post](postRaw)
