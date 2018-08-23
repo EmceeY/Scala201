@@ -10,7 +10,6 @@ object DataTransformer {
 
   implicit val formats = DefaultFormats // Brings in default date formats etc.
 
-
   val defaultPost = Post(0,0,"title","body")
   val defaultPosts = List(defaultPost)
 
@@ -26,6 +25,14 @@ object DataTransformer {
       case Success(posts) => posts
       case Failure(e) => defaultPosts
     }
+  }
+
+  def stringToPrettyJSON(string: String): String = {
+    pretty(render(parse(string)))
+  }
+
+  def caseClassToPrettyJSON[T](caseClass: T)(implicit  m: Manifest[T]) : String   = {
+    pretty(render(Extraction.decompose(caseClass)))
   }
 
 }

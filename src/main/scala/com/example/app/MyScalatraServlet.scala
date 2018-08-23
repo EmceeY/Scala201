@@ -11,7 +11,8 @@ class MyScalatraServlet extends ScalatraServlet {
 
   get("/posts"){
 //    data.allPostsRaw
-    transformer.getPosts(data.allPostsRaw)
+    val posts = transformer.getPosts(data.allPostsRaw)
+    transformer.caseClassToPrettyJSON(posts)
   }
 
   get("/comments") {
@@ -24,7 +25,8 @@ class MyScalatraServlet extends ScalatraServlet {
 
   get("/posts/:id"){
 //    data.individualPostRaw(params("id"))
-    transformer.getPost(data.individualPostRaw(params("id")))
+    val post = transformer.getPost(data.individualPostRaw(params("id")))
+    transformer.caseClassToPrettyJSON(post)
   }
 
   get("/comments/:id"){
