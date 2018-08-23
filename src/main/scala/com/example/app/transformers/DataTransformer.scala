@@ -3,8 +3,6 @@ package com.example.app.transformers
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 
-import scala.util.{Failure, Success, Try}
-
 object DataTransformer {
 
   implicit val formats = DefaultFormats // Brings in default date formats etc.
@@ -14,11 +12,16 @@ object DataTransformer {
       parse(rawJSON).children.map(child => child.extract[T])
     }
 
-    def getItem[T](rawJSON: String)(implicit m: Manifest[T]) = {
-      Try(parse(rawJSON).extract[T]) match {
-        case Success(item) => item
-        case Failure(e) => e
-      }
+    def getItem[T](rawJSON: String)(implicit m: Manifest[T]): T = {
+      parse(rawJSON).extract[T]
+    }
+
+    def stringToPrettyJSON(string: String): String = {
+      pretty(render(parse(string)))
+    }
+
+    def caseClassToPrettyJSON[T](caseClass: T)(implicit  m: Manifest[T]) : String   = {
+      pretty(render(Extraction.decompose(caseClass)))
     }
 
 }
