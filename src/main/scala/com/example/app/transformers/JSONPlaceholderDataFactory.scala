@@ -5,16 +5,16 @@ import com.example.app.HttpClient
 object JSONPlaceholderDataFactory {
 
   private
-  val jsonPlaceHolderBaseURL = "https://jsonplaceholder.typicode.com"
+  val jsonPlaceholderBaseURL = "https://jsonplaceholder.typicode.com"
 
   private
-  def getContent(contentType: String) = {
-    HttpClient(jsonPlaceHolderBaseURL + s"/${contentType}").getResponse()
+  def getContent(contentType: String) : String = {
+    HttpClient(jsonPlaceholderBaseURL + s"/${contentType}").getResponse()
   }
 
   private
-  def getIndividualContent(contentType: String, id: String) = {
-    HttpClient(jsonPlaceHolderBaseURL + s"/${contentType}/${id}").getResponse()
+  def getIndividualContent(contentType: String, id: String) : String = {
+    HttpClient(jsonPlaceholderBaseURL + s"/${contentType}/${id}").getResponse()
   }
 
   val allUsersRaw = getContent("users")
