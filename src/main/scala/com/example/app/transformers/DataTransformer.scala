@@ -9,16 +9,12 @@ object DataTransformer {
 
   implicit val formats = DefaultFormats // Brings in default date formats etc.
 
+  def getItems[T](rawJSON: String)(implicit m: Manifest[T]) : List[T] = {
+    parse(rawJSON).children.map(child => child.extract[T])
+  }
 
-    def getItems[T](rawJSON: String)(implicit m: Manifest[T]) : List[T] = {
-      parse(rawJSON).children.map(child => child.extract[T])
-    }
-
-    def getItem[T](rawJSON: String)(implicit m: Manifest[T]) = {
-      Try(parse(rawJSON).extract[T]) match {
-        case Success(item) => item
-        case Failure(e) => e
-      }
-    }
+  def getItem[T](rawJSON: String)(implicit m: Manifest[T]): T = {
+    parse(rawJSON).extract[T]
+  }
 
 }

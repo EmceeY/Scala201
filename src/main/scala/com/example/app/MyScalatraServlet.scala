@@ -1,6 +1,6 @@
 package com.example.app
 
-import com.example.app.models.Post
+import com.example.app.models._
 import com.example.app.transformers.{DataTransformer => transformer, JSONPlaceholderDataFactory => data}
 import org.scalatra._
 
@@ -30,5 +30,15 @@ class MyScalatraServlet extends ScalatraServlet {
 
   get("/comments/:id"){
     data.individualCommentRaw(params("id"))
+  }
+
+  get("/posts/:id/user") {
+    val postRaw = data.individualPostRaw(params("id"))
+    val post = transformer.getItem[Post](postRaw)
+    val postUserId = post.userId
+
+    val userRaw = data.individualUserRaw(postUserId.toString)
+    val user = transformer.getItem[User](userRaw)
+    user
   }
 }
