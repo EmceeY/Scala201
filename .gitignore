@@ -33,7 +33,12 @@ cmake-build-release/
 *.iws
 
 # IntelliJ
-out/
+*.eml
+*.iml
+*.ipr
+*.iws
+.*.sw?
+.idea
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
