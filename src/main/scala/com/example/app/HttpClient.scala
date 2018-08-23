@@ -1,13 +1,13 @@
 package com.example.app
 
-import scalaj.http.Http
+import scalaj.http.{Http, HttpResponse}
 
 class HttpClient(url: String) {
 
-  def getRequest() =
+  def getRequest() : HttpResponse[String] =
     Http(url).asString.throwError.throwServerError
 
-  def getResponse() =
+  def getResponse() : String =
     Http(url).asString.throwError.throwServerError.body
 
 }

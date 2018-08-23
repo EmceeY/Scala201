@@ -3,8 +3,6 @@ package com.example.app.transformers
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 
-import scala.util.{Failure, Success, Try}
-
 object DataTransformer {
 
   implicit val formats = DefaultFormats // Brings in default date formats etc.
