@@ -4,10 +4,10 @@ import com.example.app.HttpClient
 
 object JSONPlaceholderDataFactory {
 
-  val jsonPlaceHolderBaseURL = "https://jsonplaceholder.typicode.com"
+  val jsonPlaceholderBaseURL = "https://jsonplaceholder.typicode.com"
 
-  def getContent(contentType: String) = {
-    HttpClient(jsonPlaceHolderBaseURL + s"/${contentType}").getResponse()
+  def getContent(contentType: String) : String = {
+    HttpClient(jsonPlaceholderBaseURL + s"/${contentType}").getResponse()
   }
 
   val allUsersRaw = getContent("users")
