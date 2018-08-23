@@ -4,9 +4,6 @@ import scalaj.http.{Http, HttpResponse}
 
 class HttpClient(url: String) {
 
-  def getRequest() : HttpResponse[String] =
-    Http(url).asString.throwError.throwServerError
-
   def getResponse() : String =
     Http(url).asString.throwError.throwServerError.body
 

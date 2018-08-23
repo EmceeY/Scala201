@@ -4,17 +4,17 @@ import org.scalatra._
 
 class MyScalatraServlet extends ScalatraServlet {
 
-  val jsonPlaceHolderBaseURL = "https://jsonplaceholder.typicode.com"
+  val jsonPlaceholderBaseURL = "https://jsonplaceholder.typicode.com"
 
   get("/users") {
-    HttpClient(jsonPlaceHolderBaseURL + "/users").getResponse()
+    HttpClient(jsonPlaceholderBaseURL + "/users").getResponse()
   }
 
   get("/posts"){
-    HttpClient(jsonPlaceHolderBaseURL + "/posts").getResponse()
+    HttpClient(jsonPlaceholderBaseURL + "/posts").getResponse()
   }
 
   get("/comments") {
-    HttpClient(jsonPlaceHolderBaseURL + "/comments").getResponse()
+    HttpClient(jsonPlaceholderBaseURL + "/comments").getResponse()
   }
 }
