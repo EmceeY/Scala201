@@ -1,6 +1,6 @@
 package com.example.app
 
-import com.example.app.transformers.{JSONPlaceholderTransformer => data}
+import com.example.app.transformers.{JSONPlaceholderDataFactory => data}
 import org.scalatra._
 
 class MyScalatraServlet extends ScalatraServlet {
